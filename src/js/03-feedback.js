@@ -26,14 +26,14 @@ formInp.addEventListener('input',
 
 formInp.addEventListener('submit', event => {
     event.preventDefault();
-    if (objForm.message) {
+    if (objForm.message!=='' && objForm.email!=='') {
         console.log(objForm);
         event.target.reset();
         objForm.email = '';
         objForm.message = '';
         localStorage.removeItem('feedback-form-state');
     } else {
-        alert('Заполните поле Message')
+        alert('Заполните поля формы')
     }
 })
 
