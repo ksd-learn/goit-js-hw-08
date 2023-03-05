@@ -20,16 +20,20 @@ try {
 formInp.addEventListener('input',
     throttle(event => {
         let key = event.target.name;
-        objForm[key] = event.target.value;
+        objForm[key] = event.target.value.trim();
         localStorage.setItem('feedback-form-state', JSON.stringify(objForm));
     }, 500));
 
 formInp.addEventListener('submit', event => {
     event.preventDefault();
-    console.log(objForm);
-    event.target.reset();
-    objForm.email = '';
-    objForm.message = '';
-    localStorage.removeItem('feedback-form-state');
+    if (objForm.message) {
+        console.log(objForm);
+        event.target.reset();
+        objForm.email = '';
+        objForm.message = '';
+        localStorage.removeItem('feedback-form-state');
+    } else {
+        alert('Заполните поле Message')
+    }
 })
 
